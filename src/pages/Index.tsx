@@ -310,6 +310,16 @@ const Index = () => {
                 </div>
               ))}
             </div>
+            <div className="flex gap-3 mt-8">
+              <a href="https://wa.me/79998835203" target="_blank" rel="noopener noreferrer" className="flex items-center gap-2 border border-border px-5 py-3 hover:border-gold hover:text-gold transition-colors flex-1 justify-center">
+                <Icon name="MessageCircle" size={20} />
+                <span className="font-medium">WhatsApp</span>
+              </a>
+              <a href="https://t.me/+79998835203" target="_blank" rel="noopener noreferrer" className="flex items-center gap-2 border border-border px-5 py-3 hover:border-gold hover:text-gold transition-colors flex-1 justify-center">
+                <Icon name="Send" size={20} />
+                <span className="font-medium">Telegram</span>
+              </a>
+            </div>
           </div>
           <div className="border border-border bg-card p-8">
             <h3 className="font-display text-2xl font-semibold mb-6">Оставить заявку</h3>
