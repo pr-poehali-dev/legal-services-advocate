@@ -293,7 +293,7 @@ const Index = () => {
                 { icon: 'Phone', label: 'Телефон', value: '+7 (900) 000-00-00' },
                 { icon: 'Mail', label: 'Email', value: 'info@mamedova-law.ru' },
                 { icon: 'MapPin', label: 'Офис', value: 'г. Москва, ул. Правовая, 1' },
-                { icon: 'Clock', label: 'Часы приёма', value: 'Пн–Сб, 10:00 — 19:00' },
+                { icon: 'Clock', label: 'Часы приёма', value: 'Пн–Пт, 09:00 — 19:00' },
               ].map((c) => (
                 <div key={c.label} className="flex items-center gap-5">
                   <div className="w-12 h-12 flex items-center justify-center border border-gold/40 text-gold shrink-0">
