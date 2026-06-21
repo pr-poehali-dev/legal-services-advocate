@@ -290,10 +290,10 @@ const Index = () => {
             <h2 className="font-display text-4xl md:text-5xl font-bold mt-3 mb-8">Свяжитесь с адвокатом</h2>
             <div className="space-y-6">
               {[
-                { icon: 'Phone', label: 'Телефон', value: '+7 (999) 883-52-03' },
-                { icon: 'Mail', label: 'Email', value: 'mamedowa789@gmail.com' },
-                { icon: 'MapPin', label: 'Офис', value: 'г. Киров, ул. Спасская, д. 43/1, каб. 116' },
-                { icon: 'Clock', label: 'Часы приёма', value: 'Пн–Пт, 09:00 — 19:00' },
+                { icon: 'Phone', label: 'Телефон', value: '+7 (999) 883-52-03', href: 'tel:+79998835203' },
+                { icon: 'Mail', label: 'Email', value: 'mamedowa789@gmail.com', href: 'mailto:mamedowa789@gmail.com' },
+                { icon: 'MapPin', label: 'Офис', value: 'г. Киров, ул. Спасская, д. 43/1, каб. 116', href: null },
+                { icon: 'Clock', label: 'Часы приёма', value: 'Пн–Пт, 09:00 — 19:00', href: null },
               ].map((c) => (
                 <div key={c.label} className="flex items-center gap-5">
                   <div className="w-12 h-12 flex items-center justify-center border border-gold/40 text-gold shrink-0">
@@ -301,7 +301,11 @@ const Index = () => {
                   </div>
                   <div>
                     <div className="text-xs uppercase tracking-wide text-muted-foreground">{c.label}</div>
-                    <div className="font-medium text-lg">{c.value}</div>
+                    {c.href ? (
+                      <a href={c.href} className="font-medium text-lg hover:text-gold transition-colors">{c.value}</a>
+                    ) : (
+                      <div className="font-medium text-lg">{c.value}</div>
+                    )}
                   </div>
                 </div>
               ))}
