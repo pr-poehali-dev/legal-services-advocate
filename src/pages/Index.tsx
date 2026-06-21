@@ -96,9 +96,21 @@ const Index = () => {
               </button>
             ))}
           </nav>
-          <Button onClick={() => scrollTo('consult')} className="hidden md:inline-flex bg-gold text-primary-foreground hover:bg-gold/90 rounded-none px-6">
-            Записаться
-          </Button>
+          <div className="hidden md:flex items-center gap-3">
+            <a href="tel:+79998835203" className="flex items-center gap-2 border border-border px-4 h-10 hover:border-gold hover:text-gold transition-colors text-sm">
+              <Icon name="Phone" size={16} />
+              +7 (999) 883-52-03
+            </a>
+            <a href="https://wa.me/79998835203" target="_blank" rel="noopener noreferrer" className="flex items-center justify-center w-10 h-10 border border-border hover:border-gold hover:text-gold transition-colors">
+              <Icon name="MessageCircle" size={18} />
+            </a>
+            <a href="https://t.me/+79998835203" target="_blank" rel="noopener noreferrer" className="flex items-center justify-center w-10 h-10 border border-border hover:border-gold hover:text-gold transition-colors">
+              <Icon name="Send" size={18} />
+            </a>
+            <Button onClick={() => scrollTo('consult')} className="bg-gold text-primary-foreground hover:bg-gold/90 rounded-none px-6">
+              Записаться
+            </Button>
+          </div>
           <button className="md:hidden text-foreground" onClick={() => setMenuOpen(!menuOpen)}>
             <Icon name={menuOpen ? 'X' : 'Menu'} size={26} />
           </button>
