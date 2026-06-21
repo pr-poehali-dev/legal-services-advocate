@@ -1,6 +1,9 @@
 import { useState } from 'react';
 import Icon from '@/components/ui/icon';
 import { Button } from '@/components/ui/button';
+import { useToast } from '@/hooks/use-toast';
+
+const SEND_REQUEST_URL = 'https://functions.poehali.dev/1c58c89a-9739-4909-9e46-a7230dace9c0';
 
 const NAV = [
   { id: 'home', label: 'Главная' },
@@ -46,10 +49,35 @@ const LAWYER_IMG = 'https://cdn.poehali.dev/projects/1848aecc-704b-4099-9131-4f2
 const Index = () => {
   const [menuOpen, setMenuOpen] = useState(false);
   const [activeDay, setActiveDay] = useState(0);
+  const [form, setForm] = useState({ name: '', phone: '', message: '' });
+  const [sending, setSending] = useState(false);
+  const { toast } = useToast();
 
   const scrollTo = (id: string) => {
     setMenuOpen(false);
     document.getElementById(id)?.scrollIntoView({ behavior: 'smooth' });
+  };
+
+  const submitForm = async () => {
+    if (!form.name.trim() || !form.phone.trim()) {
+      toast({ title: 'Заполните поля', description: 'Укажите имя и телефон.', variant: 'destructive' });
+      return;
+    }
+    setSending(true);
+    try {
+      const res = await fetch(SEND_REQUEST_URL, {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify(form),
+      });
+      if (!res.ok) throw new Error();
+      toast({ title: 'Заявка отправлена', description: 'Елена Сергеевна свяжется с вами в ближайшее время.' });
+      setForm({ name: '', phone: '', message: '' });
+    } catch {
+      toast({ title: 'Ошибка отправки', description: 'Попробуйте позже или позвоните нам.', variant: 'destructive' });
+    } finally {
+      setSending(false);
+    }
   };
 
   return (
@@ -282,11 +310,11 @@ const Index = () => {
           <div className="border border-border bg-card p-8">
             <h3 className="font-display text-2xl font-semibold mb-6">Оставить заявку</h3>
             <div className="space-y-4">
-              <input placeholder="Ваше имя" className="w-full bg-background border border-border px-4 py-3 outline-none focus:border-gold transition-colors" />
-              <input placeholder="Телефон" className="w-full bg-background border border-border px-4 py-3 outline-none focus:border-gold transition-colors" />
-              <textarea placeholder="Кратко опишите ситуацию" rows={4} className="w-full bg-background border border-border px-4 py-3 outline-none focus:border-gold transition-colors resize-none" />
-              <Button className="w-full bg-gold text-primary-foreground hover:bg-gold/90 rounded-none h-12 text-base">
-                Отправить заявку
+              <input value={form.name} onChange={(e) => setForm({ ...form, name: e.target.value })} placeholder="Ваше имя" className="w-full bg-background border border-border px-4 py-3 outline-none focus:border-gold transition-colors" />
+              <input value={form.phone} onChange={(e) => setForm({ ...form, phone: e.target.value })} placeholder="Телефон" className="w-full bg-background border border-border px-4 py-3 outline-none focus:border-gold transition-colors" />
+              <textarea value={form.message} onChange={(e) => setForm({ ...form, message: e.target.value })} placeholder="Кратко опишите ситуацию" rows={4} className="w-full bg-background border border-border px-4 py-3 outline-none focus:border-gold transition-colors resize-none" />
+              <Button onClick={submitForm} disabled={sending} className="w-full bg-gold text-primary-foreground hover:bg-gold/90 rounded-none h-12 text-base">
+                {sending ? 'Отправляем...' : 'Отправить заявку'}
               </Button>
               <p className="text-xs text-muted-foreground text-center">
                 Нажимая кнопку, вы соглашаетесь на обработку персональных данных.
