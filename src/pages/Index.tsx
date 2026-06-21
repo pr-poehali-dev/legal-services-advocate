@@ -290,9 +290,9 @@ const Index = () => {
             <h2 className="font-display text-4xl md:text-5xl font-bold mt-3 mb-8">Свяжитесь с адвокатом</h2>
             <div className="space-y-6">
               {[
-                { icon: 'Phone', label: 'Телефон', value: '+7 (900) 000-00-00' },
-                { icon: 'Mail', label: 'Email', value: 'info@mamedova-law.ru' },
-                { icon: 'MapPin', label: 'Офис', value: 'г. Москва, ул. Правовая, 1' },
+                { icon: 'Phone', label: 'Телефон', value: '+7 (999) 883-52-03' },
+                { icon: 'Mail', label: 'Email', value: 'mamedowa789@gmail.com' },
+                { icon: 'MapPin', label: 'Офис', value: 'г. Киров, ул. Спасская, д. 43/1, каб. 116' },
                 { icon: 'Clock', label: 'Часы приёма', value: 'Пн–Пт, 09:00 — 19:00' },
               ].map((c) => (
                 <div key={c.label} className="flex items-center gap-5">
